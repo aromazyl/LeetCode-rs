@@ -17,46 +17,50 @@
 //     }
 //   }
 // }
-impl Solution {
-    pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+pub fn add_two_numbers_n(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>, add: i32) -> Option<Box<ListNode>> {
         if l1.is_none() {
-            return l2;
+            if l2.is_none() {
+                if add != 0 {
+                    return Some(Box::new(ListNode {
+                        val: 1,
+                        next: None,
+                    }))
+                }
+                return None;
+            }
+            return add_two_numbers_n(l2, l1, add);
         }
+        
         if l2.is_none() {
-            return l1;
-        }
-        let mut n_l1 = &mut l1.unwrap();
-        let mut n_l2 = &mut l2.unwrap();
-        let mut add = 0;
-        let mut red = 0;
-        loop {
-            let t = add + n_l1.val + n_l2.val;
-            add = t / 10;
-            red = t % 10;
-            n_l1.val = red;
-            if n_l1.next.is_none() || n_l2.next.is_none() {
-                break;
+            if add == 0 {
+                return l1;
             }
-            
-            n_l1.val = red;
-            n_l1 = n_l1.next.as_mut().unwrap();
-            n_l2 = n_l2.next.as_mut().unwrap();
+            let rl1 = l1.unwrap();
+            let n_add = 1 + rl1.val;
+            let r_add = n_add % 10;
+            let add = n_add / 10;
+            let kNode = add_two_numbers_n(rl1.next, None, add);
+            return Some(Box::new(ListNode {
+                val: r_add,
+                next: kNode,
+            }));
         }
-        if n_l1.next.is_none() {
-            n_l1.next = n_l2.next.take();
-            loop {
-                if n_l2.next.is_none() {
-                    break;
-                }
-                if add == 0 {
-                    return l1;
-                }
-                n_l2 = &mut n_l2.next.unwrap();
-                n_l2.val = (n_l2.val + 1) % 10;
-                add = (n_l2.val + 1) / 10; 
-            }
-        }
-        return l1;
+        
+        let rl1 = l1.unwrap();
+        let rl2 = l2.unwrap();
+        let n_add = add + rl1.val + rl2.val;
+        let x_add = n_add / 10;
+        let val = n_add % 10;
+        let lNode = add_two_numbers_n(rl1.next, rl2.next, x_add);
+        return Some(Box::new(ListNode{
+            val,
+            next: lNode,
+        }))
+    }
+impl Solution {
+    
+    pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+       return add_two_numbers_n(l1, l2, 0);
     }
 }
 ```
