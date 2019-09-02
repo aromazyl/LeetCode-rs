@@ -1,5 +1,8 @@
-#AddTwoNumbers
+#题目
+AddTwoNumbers
+
 ##code
+
 ```
 // Definition for singly-linked list.
 // #[derive(PartialEq, Eq, Clone, Debug)]
@@ -64,6 +67,14 @@ impl Solution {
     }
 }
 ```
+
+## 测试结果
+
+Success
+Details 
+Runtime: 4 ms, faster than 82.69% of Rust online submissions for Add Two Numbers.
+Memory Usage: 2.4 MB, less than 33.33% of Rust online submissions for Add Two Numbers.
+
 ##思路
 
 通过递归来实现链表元素加和，功能非常简单，忽略了c语言种修改链表元素值的方式来完成这道题。
