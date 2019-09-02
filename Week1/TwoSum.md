@@ -17,7 +17,23 @@ impl Solution {
         return vec![];
     }
 }
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+#[test]
+  fn it_works() {
+    assert_eq!(Solution::two_sum(vec![1,2,3,4,5,6], 100), vec![]);
+    assert_eq!(Solution::two_sum(vec![1,2,3,4,5,6], 3), vec![0, 1]);
+    assert_eq!(Solution::two_sum(vec![1,2,3,4,5,6], 10), vec![3, 5]);
+  }
+}
 ```
+
+## 运行结果：
+Details 
+Runtime: 0 ms, faster than 100.00% of Rust online submissions for Two Sum.
+Memory Usage: 3 MB, less than 50.00% of Rust online submissions for Two Sum.
 
 ## 思路
 通过hashmap，存储已经遍历过的数字以及对应下标，对于新的数n, 查找target - n即可。
@@ -30,4 +46,4 @@ O(n)
 ### 归类：
 动态规划
 ### 类似： 
-n-sum题型，4-sum, 3-sum等
+n-sum/动态规划题型，4-sum, 3-sum, 最大连续子序列等
