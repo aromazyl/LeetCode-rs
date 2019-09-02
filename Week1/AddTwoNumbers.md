@@ -74,6 +74,7 @@ Success
 Details 
 Runtime: 4 ms, faster than 82.69% of Rust online submissions for Add Two Numbers.
 Memory Usage: 2.4 MB, less than 33.33% of Rust online submissions for Add Two Numbers.
+![TestResult](./AddTwoNumbers.png)
 
 ##思路
 
