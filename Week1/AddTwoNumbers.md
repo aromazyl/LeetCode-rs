@@ -66,6 +66,26 @@ impl Solution {
        return add_two_numbers_n(l1, l2, 0);
     }
 }
+
+#[macro_export]
+macro_rules! node_list {
+    () => { None };
+    ($key: expr) => { Some(Box::new(ListNode{next: None, val: $key})) };
+    ($e: expr, $( $key: expr),+) => { Some(Box::new(ListNode{next: node_list!($($key),*), val: $e})) };
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_add_two_numbers() {
+        assert_eq!(None, Solution::add_two_numbers(None, None));
+        assert_eq!(node_list!(2,4,3), Solution::add_two_numbers(None, node_list!(2,4,3)));
+        assert_eq!(node_list!(4,7,7), Solution::add_two_numbers(node_list!(2,3,4), node_list!(2,4,3)));
+        assert_eq!(node_list!(4,7,0,1), Solution::add_two_numbers(node_list!(2,3,4), node_list!(2,4,6)));
+    }
+}
+
 ```
 
 ## 测试结果
