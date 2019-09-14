@@ -45,3 +45,32 @@ mod tests {
     }
 }
 ```
+
+## 性能
+
+`Runtime`: 0 ms, faster than 100.00% of Rust online submissions for Monotone Increasing Digits.
+`Memory Usage`: 2.3 MB, less than 100.00% of Rust online submissions for Monotone Increasing Digits.
+
+## 思路
+
+从左往右，寻找第一个出现数字递减关系的标号，再往前找第一个递减的数字，这个数字减一，后面全补上9即可
+
+比方说: 1233332221, 对应的应该是122999..., 有比较明显的特点
+
+## 复杂度
+考虑到每个数最长不超过10个数字，因此空间和时间复杂度都应该是O(1)
+
+## 提升空间
+好像我写的不够简洁
+
+## 困难点
+一开始的时候，我没有考虑到数字相同的情况，导致没有找到递减的时候往前回溯
+
+## 分类
+贪婪
+
+## 类似题目
+
+1) Jump Game
+2) Best Time to Buy and Sell Stock
+3) Gas Station
